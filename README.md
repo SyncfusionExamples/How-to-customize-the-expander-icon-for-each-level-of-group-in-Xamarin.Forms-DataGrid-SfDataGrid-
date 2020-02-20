@@ -71,7 +71,8 @@ By default, Datagrid having same expander icon for all the caption summaries. Bu
     </ContentPage.Content>
 </ContentPage>
 
-Refer the following code for writing Converter class for Image and Label. 
+```
+ 
 
 ```C#
   public class GroupCaptionConverter : IValueConverter
@@ -152,7 +153,6 @@ Refer the following code for writing Converter class for Image and Label.
     }
 ```
 
-Refer to the below for setting the null value to CollapseIcon and ExpanderIcon.
 
 ```C#
 public class CustomStyle : DataGridStyle
