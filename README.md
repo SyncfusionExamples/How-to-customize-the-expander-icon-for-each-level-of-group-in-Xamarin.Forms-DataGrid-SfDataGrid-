@@ -4,7 +4,7 @@
 
 This example illustrates how to customize the expander icon of the group in SfDataGrid.
 
-By default, Datagrid having same expander icon for all the caption summaries. But we can customize that expander icon for each group by using the CaptionSummaryTemplate property in SfDataGrid. Before we have to return the null value to GetGroupCollapseIcon and GetGroupExpanderIcon method in DataGridStyle class.
+By default, DataGrid having same expander icon for all the caption summaries. But we can customize that expander icon for each group by using SfDataGrid.CaptionSummaryTemplate property. We need to set null value for GroupCollapseIcon and GroupExpanderIcon in DataGridStyle class.
 
 ```XAML
 <?xml version="1.0" encoding="utf-8" ?>
