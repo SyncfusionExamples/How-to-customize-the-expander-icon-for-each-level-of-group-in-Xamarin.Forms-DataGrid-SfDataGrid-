@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="DataGridDemo.MainPage"
+             xmlns:local="clr-namespace:DataGridDemo"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             Padding="10,10,10,10">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:GroupCaptionConverter x:Key="SummaryConverter" />
+            <local:GroupBackgroundColor x:Key="SummaryBackground" />
+            <local:GroupIconConverter x:Key="SummaryIcon"></local:GroupIconConverter>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <local:OrderInfoRepository x:Name="viewModel"/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <syncfusion:SfDataGrid
+            x:Name="dataGrid"
+             ItemsSource="{Binding OrderInfoCollection}"
+             AutoGenerateColumns="False"
+            AllowGroupExpandCollapse="True"
+            ColumnSizer="Star"
+             GroupingMode="Multiple"
+             AllowEditing="True"
+             NavigationMode="Cell"
+             SelectionMode="Single">
+            <syncfusion:SfDataGrid.GroupColumnDescriptions>
+                <syncfusion:GroupColumnDescription ColumnName="OrderID" />
+                <syncfusion:GroupColumnDescription ColumnName="CustomerID" />
+            </syncfusion:SfDataGrid.GroupColumnDescriptions>
+            <syncfusion:SfDataGrid.Columns>
+                <syncfusion:GridTextColumn HeaderText="Order ID" MappingName="OrderID" />
+                <syncfusion:GridTextColumn HeaderText="Customer ID" MappingName="CustomerID" />
+                
+                <syncfusion:GridTextColumn HeaderText="City" MappingName="ShipCity" />
+                <syncfusion:GridTextColumn HeaderText="Ship Country" MappingName="ShipCountry" />
+            </syncfusion:SfDataGrid.Columns>
+            <syncfusion:SfDataGrid.CaptionSummaryTemplate>
+                <DataTemplate>
+                    <Grid Padding="5"  HorizontalOptions="CenterAndExpand" BackgroundColor="{Binding Converter={StaticResource SummaryBackground}, ConverterParameter={x:Reference dataGrid}}">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="1" x:Name="captionSummary" VerticalOptions="CenterAndExpand" WidthRequest="250"  Text="{Binding Converter={StaticResource SummaryConverter}, 
+                                                  ConverterParameter = {x:Reference dataGrid} }" >
+
+                        </Label>
+                        <Image Grid.Column="0" Source="{Binding Converter={StaticResource SummaryIcon}, ConverterParameter={x:Reference dataGrid}}" VerticalOptions="Center" HorizontalOptions="End" HeightRequest="20">
+
+                        </Image>
+                    </Grid>
+                </DataTemplate>
+            </syncfusion:SfDataGrid.CaptionSummaryTemplate>
+        </syncfusion:SfDataGrid>
+    </ContentPage.Content>
+</ContentPage>
